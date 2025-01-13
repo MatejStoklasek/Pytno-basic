@@ -1,9 +1,10 @@
+import random
+
 global hp, xp, money
 
-hp = 85
+hp = 100
 xp = 0
-money = 100
-
+money = 0
 
 def add_hp(amount):
     global hp
@@ -15,7 +16,6 @@ def add_hp(amount):
 def stats():
     print(f"### HP {hp} ### XP {xp} ### {money} ###")
 
-
 def welcome_screen():
     print("########################")
     print("     Vítej v RPG hře    ")
@@ -25,9 +25,8 @@ def welcome_screen():
     print("1 - Zahájit hru")
     print("Cokoliv jiného - ukončit hru")
 
-
 def tavern():
-    global money, hp
+    global hp, money
     print("-----------------------")
     print("      Jsi v krčmě      ")
     print("-----------------------")
@@ -42,28 +41,28 @@ def tavern():
     choice = input("Vyber z menu: ")
     if int(choice) == 1:
         if money < 20:
-            print("Nemáš dostatek peněz")
+            print("Nemáš dostatek peněž")
         else:
             print("Koupil jsis báječné pivo")
             money -= 20
             add_hp(5)
     elif int(choice) == 2:
         if money < 35:
-            print("Nemáš dostatek peněz")
+            print("Nemáš dostatek peněž")
         else:
             print("Koupil jsis hnusnou polévku")
             money -= 35
             add_hp(6)
     elif int(choice) == 3:
         if money < 80:
-            print("Nemáš dostatek peněz")
+            print("Nemáš dostatek peněž")
         else:
             print("Dostal jsi před sebe půlku divočáka")
             money -= 80
             add_hp(50)
+
     stats()
     crossroad()
-
 
 def crossroad():
     print("-----------------------")
@@ -77,7 +76,7 @@ def crossroad():
 
     choice = input("Vyber z menu: ")
     if int(choice) == 1:
-        training_course()
+        trainig_course()
     elif int(choice) == 2:
         tavern()
     elif int(choice) == 3:
@@ -86,13 +85,23 @@ def crossroad():
         crossroad()
 
 
-def training_course():
-    print("-------------------------")
-    print("Jsi na tréninkovém hřišti")
-    print("-------------------------")
-    print("\nVyber si trénink")
+def trainig_course():
+    print("-----------------------")
+    print("Jsi na tréninkovém hřisti")
+    print("-----------------------")
+    print("\nVyber si trénink:")
     print("1 - Útok")
-    print("2 - obrana")
+    print("2 - Obrana")
+
+    # Úplně nahoře je vložená knihovna
+    # import random
+    random_chance = random.randint(1, 100)
+
+    if random_chance < 50:
+        print("vyhral jsi")
+    else:
+        print("prohral jsi")
+
 
 
 def main():
